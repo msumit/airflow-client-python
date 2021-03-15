@@ -1,4 +1,4 @@
-# airflow-client
+# Apache-Airflow-Client
 # Overview
 
 To facilitate management, Apache Airflow supports a range of REST API endpoints across its
@@ -270,9 +270,6 @@ from airflow_client.model.config import Config
 from airflow_client.model.error import Error
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow_client.Configuration(
-    host = "http://localhost/api/v1"
-)
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -281,6 +278,7 @@ configuration = airflow_client.Configuration(
 
 # Configure HTTP basic authorization: Basic
 configuration = airflow_client.Configuration(
+    host = "http://localhost:8080/api/v1",
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
