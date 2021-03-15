@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.extra_link_collection import ExtraLinkCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.extra_link import ExtraLink
+globals()['ExtraLink'] = ExtraLink
+from airflow_client.model.extra_link_collection import ExtraLinkCollection
+
 
 class TestExtraLinkCollection(unittest.TestCase):
     """ExtraLinkCollection unit test stubs"""
@@ -29,31 +27,11 @@ class TestExtraLinkCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ExtraLinkCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.extra_link_collection.ExtraLinkCollection()  # noqa: E501
-        if include_optional :
-            return ExtraLinkCollection(
-                extra_links = [
-                    airflow.models.extra_link.ExtraLink(
-                        class_ref = airflow.models.class_reference.ClassReference(
-                            module_path = '0', 
-                            class_name = '0', ), 
-                        name = '0', 
-                        href = '0', )
-                    ]
-            )
-        else :
-            return ExtraLinkCollection(
-        )
-
     def testExtraLinkCollection(self):
         """Test ExtraLinkCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ExtraLinkCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

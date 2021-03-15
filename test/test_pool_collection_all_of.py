@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.pool_collection_all_of import PoolCollectionAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.pool import Pool
+globals()['Pool'] = Pool
+from airflow_client.model.pool_collection_all_of import PoolCollectionAllOf
+
 
 class TestPoolCollectionAllOf(unittest.TestCase):
     """PoolCollectionAllOf unit test stubs"""
@@ -29,32 +27,11 @@ class TestPoolCollectionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test PoolCollectionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.pool_collection_all_of.PoolCollectionAllOf()  # noqa: E501
-        if include_optional :
-            return PoolCollectionAllOf(
-                pools = [
-                    airflow.models.pool.Pool(
-                        name = '0', 
-                        slots = 56, 
-                        occupied_slots = 56, 
-                        used_slots = 56, 
-                        queued_slots = 56, 
-                        open_slots = 56, )
-                    ]
-            )
-        else :
-            return PoolCollectionAllOf(
-        )
-
     def testPoolCollectionAllOf(self):
         """Test PoolCollectionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = PoolCollectionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.event_log_collection import EventLogCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.event_log import EventLog
+from airflow_client.model.event_log_collection_all_of import EventLogCollectionAllOf
+globals()['CollectionInfo'] = CollectionInfo
+globals()['EventLog'] = EventLog
+globals()['EventLogCollectionAllOf'] = EventLogCollectionAllOf
+from airflow_client.model.event_log_collection import EventLogCollection
+
 
 class TestEventLogCollection(unittest.TestCase):
     """EventLogCollection unit test stubs"""
@@ -29,35 +31,11 @@ class TestEventLogCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test EventLogCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.event_log_collection.EventLogCollection()  # noqa: E501
-        if include_optional :
-            return EventLogCollection(
-                event_logs = [
-                    airflow.models.event_log.EventLog(
-                        event_log_id = 56, 
-                        when = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        dag_id = '0', 
-                        task_id = '0', 
-                        event = '0', 
-                        execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        owner = '0', 
-                        extra = '0', )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return EventLogCollection(
-        )
-
     def testEventLogCollection(self):
         """Test EventLogCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = EventLogCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

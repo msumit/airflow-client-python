@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.collection_info import CollectionInfo  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+
 
 class TestCollectionInfo(unittest.TestCase):
     """CollectionInfo unit test stubs"""
@@ -29,24 +25,11 @@ class TestCollectionInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test CollectionInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.collection_info.CollectionInfo()  # noqa: E501
-        if include_optional :
-            return CollectionInfo(
-                total_entries = 56
-            )
-        else :
-            return CollectionInfo(
-        )
-
     def testCollectionInfo(self):
         """Test CollectionInfo"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = CollectionInfo()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

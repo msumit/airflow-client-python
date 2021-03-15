@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.connection_all_of import ConnectionAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.connection_all_of import ConnectionAllOf
+
 
 class TestConnectionAllOf(unittest.TestCase):
     """ConnectionAllOf unit test stubs"""
@@ -29,25 +25,11 @@ class TestConnectionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ConnectionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.connection_all_of.ConnectionAllOf()  # noqa: E501
-        if include_optional :
-            return ConnectionAllOf(
-                password = '0', 
-                extra = '0'
-            )
-        else :
-            return ConnectionAllOf(
-        )
-
     def testConnectionAllOf(self):
         """Test ConnectionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ConnectionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

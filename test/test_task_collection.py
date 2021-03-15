@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.task_collection import TaskCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.task import Task
+globals()['Task'] = Task
+from airflow_client.model.task_collection import TaskCollection
+
 
 class TestTaskCollection(unittest.TestCase):
     """TaskCollection unit test stubs"""
@@ -29,80 +27,11 @@ class TestTaskCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test TaskCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.task_collection.TaskCollection()  # noqa: E501
-        if include_optional :
-            return TaskCollection(
-                tasks = [
-                    airflow.models.task.Task(
-                        class_ref = airflow.models.class_reference.ClassReference(
-                            module_path = '0', 
-                            class_name = '0', ), 
-                        task_id = '0', 
-                        owner = '0', 
-                        start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        trigger_rule = 'all_success', 
-                        extra_links = [
-                            airflow.models.task_extra_links.Task_extra_links()
-                            ], 
-                        depends_on_past = True, 
-                        wait_for_downstream = True, 
-                        retries = 1.337, 
-                        queue = '0', 
-                        pool = '0', 
-                        pool_slots = 1.337, 
-                        execution_timeout = airflow.models.time_delta.TimeDelta(
-                            __type = '0', 
-                            days = 56, 
-                            seconds = 56, 
-                            microseconds = 56, ), 
-                        retry_delay = airflow.models.time_delta.TimeDelta(
-                            __type = '0', 
-                            days = 56, 
-                            seconds = 56, 
-                            microseconds = 56, ), 
-                        retry_exponential_backoff = True, 
-                        priority_weight = 1.337, 
-                        weight_rule = 'downstream', 
-                        ui_color = 'a', 
-                        ui_fgcolor = 'a', 
-                        template_fields = [
-                            '0'
-                            ], 
-                        sub_dag = airflow.models.dag.DAG(
-                            dag_id = '0', 
-                            root_dag_id = '0', 
-                            is_paused = True, 
-                            is_subdag = True, 
-                            fileloc = '0', 
-                            file_token = '0', 
-                            owners = [
-                                '0'
-                                ], 
-                            description = '0', 
-                            schedule_interval = null, 
-                            tags = [
-                                airflow.models.tag.Tag(
-                                    name = '0', )
-                                ], ), 
-                        downstream_task_ids = [
-                            '0'
-                            ], )
-                    ]
-            )
-        else :
-            return TaskCollection(
-        )
-
     def testTaskCollection(self):
         """Test TaskCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = TaskCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

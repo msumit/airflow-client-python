@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.pool import Pool  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.pool import Pool
+
 
 class TestPool(unittest.TestCase):
     """Pool unit test stubs"""
@@ -29,29 +25,11 @@ class TestPool(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Pool
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.pool.Pool()  # noqa: E501
-        if include_optional :
-            return Pool(
-                name = '0', 
-                slots = 56, 
-                occupied_slots = 56, 
-                used_slots = 56, 
-                queued_slots = 56, 
-                open_slots = 56
-            )
-        else :
-            return Pool(
-        )
-
     def testPool(self):
         """Test Pool"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Pool()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

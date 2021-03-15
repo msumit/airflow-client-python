@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.x_com_collection import XComCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.x_com_collection_all_of import XComCollectionAllOf
+from airflow_client.model.x_com_collection_item import XComCollectionItem
+globals()['CollectionInfo'] = CollectionInfo
+globals()['XComCollectionAllOf'] = XComCollectionAllOf
+globals()['XComCollectionItem'] = XComCollectionItem
+from airflow_client.model.x_com_collection import XComCollection
+
 
 class TestXComCollection(unittest.TestCase):
     """XComCollection unit test stubs"""
@@ -29,32 +31,11 @@ class TestXComCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test XComCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.x_com_collection.XComCollection()  # noqa: E501
-        if include_optional :
-            return XComCollection(
-                xcom_entries = [
-                    airflow.models.x_com_collection_item.XComCollectionItem(
-                        key = '0', 
-                        timestamp = '0', 
-                        execution_date = '0', 
-                        task_id = '0', 
-                        dag_id = '0', )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return XComCollection(
-        )
-
     def testXComCollection(self):
         """Test XComCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = XComCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

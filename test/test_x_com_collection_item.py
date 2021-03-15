@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.x_com_collection_item import XComCollectionItem  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.x_com_collection_item import XComCollectionItem
+
 
 class TestXComCollectionItem(unittest.TestCase):
     """XComCollectionItem unit test stubs"""
@@ -29,28 +25,11 @@ class TestXComCollectionItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test XComCollectionItem
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.x_com_collection_item.XComCollectionItem()  # noqa: E501
-        if include_optional :
-            return XComCollectionItem(
-                key = '0', 
-                timestamp = '0', 
-                execution_date = '0', 
-                task_id = '0', 
-                dag_id = '0'
-            )
-        else :
-            return XComCollectionItem(
-        )
-
     def testXComCollectionItem(self):
         """Test XComCollectionItem"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = XComCollectionItem()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

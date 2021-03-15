@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **execution_date** | **str** |  | [optional] 
 **email_sent** | **bool** |  | [optional] 
 **timestamp** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
+**description** | **str, none_type** |  | [optional] 
 **notification_sent** | **bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

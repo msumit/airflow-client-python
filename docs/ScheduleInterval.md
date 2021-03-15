@@ -5,22 +5,23 @@ Schedule interval. Defines how often DAG runs, this object gets added to your la
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
-**days** | **int** |  | 
-**seconds** | **int** |  | 
-**microseconds** | **int** |  | 
-**years** | **int** |  | 
-**months** | **int** |  | 
-**leapdays** | **int** |  | 
-**hours** | **int** |  | 
-**minutes** | **int** |  | 
-**year** | **int** |  | 
-**month** | **int** |  | 
-**day** | **int** |  | 
-**hour** | **int** |  | 
-**minute** | **int** |  | 
-**second** | **int** |  | 
-**microsecond** | **int** |  | 
-**value** | **str** |  | 
+**days** | **int** |  | [optional] 
+**seconds** | **int** |  | [optional] 
+**microseconds** | **int** |  | [optional] 
+**years** | **int** |  | [optional] 
+**months** | **int** |  | [optional] 
+**leapdays** | **int** |  | [optional] 
+**hours** | **int** |  | [optional] 
+**minutes** | **int** |  | [optional] 
+**year** | **int** |  | [optional] 
+**month** | **int** |  | [optional] 
+**day** | **int** |  | [optional] 
+**hour** | **int** |  | [optional] 
+**minute** | **int** |  | [optional] 
+**second** | **int** |  | [optional] 
+**microsecond** | **int** |  | [optional] 
+**value** | **str** |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

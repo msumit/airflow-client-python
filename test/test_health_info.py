@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.health_info import HealthInfo  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.metadatabase_status import MetadatabaseStatus
+from airflow_client.model.scheduler_status import SchedulerStatus
+globals()['MetadatabaseStatus'] = MetadatabaseStatus
+globals()['SchedulerStatus'] = SchedulerStatus
+from airflow_client.model.health_info import HealthInfo
+
 
 class TestHealthInfo(unittest.TestCase):
     """HealthInfo unit test stubs"""
@@ -29,28 +29,11 @@ class TestHealthInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test HealthInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.health_info.HealthInfo()  # noqa: E501
-        if include_optional :
-            return HealthInfo(
-                metadatabase = airflow.models.metadatabase_status.MetadatabaseStatus(
-                    status = 'healthy', ), 
-                scheduler = airflow.models.scheduler_status.SchedulerStatus(
-                    status = 'healthy', 
-                    latest_scheduler_heartbeat = '0', )
-            )
-        else :
-            return HealthInfo(
-        )
-
     def testHealthInfo(self):
         """Test HealthInfo"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = HealthInfo()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

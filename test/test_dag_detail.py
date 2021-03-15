@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,22 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_detail import DAGDetail  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.dag import DAG
+from airflow_client.model.dag_detail_all_of import DAGDetailAllOf
+from airflow_client.model.schedule_interval import ScheduleInterval
+from airflow_client.model.tag import Tag
+from airflow_client.model.time_delta import TimeDelta
+globals()['DAG'] = DAG
+globals()['DAGDetailAllOf'] = DAGDetailAllOf
+globals()['ScheduleInterval'] = ScheduleInterval
+globals()['Tag'] = Tag
+globals()['TimeDelta'] = TimeDelta
+from airflow_client.model.dag_detail import DAGDetail
+
 
 class TestDAGDetail(unittest.TestCase):
     """DAGDetail unit test stubs"""
@@ -29,51 +35,11 @@ class TestDAGDetail(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGDetail
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_detail.DAGDetail()  # noqa: E501
-        if include_optional :
-            return DAGDetail(
-                dag_id = '0', 
-                root_dag_id = '0', 
-                is_paused = True, 
-                is_subdag = True, 
-                fileloc = '0', 
-                file_token = '0', 
-                owners = [
-                    '0'
-                    ], 
-                description = '0', 
-                schedule_interval = null, 
-                tags = [
-                    airflow.models.tag.Tag(
-                        name = '0', )
-                    ], 
-                timezone = '0', 
-                catchup = True, 
-                orientation = '0', 
-                concurrency = 1.337, 
-                start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                dag_run_timeout = airflow.models.time_delta.TimeDelta(
-                    __type = '0', 
-                    days = 56, 
-                    seconds = 56, 
-                    microseconds = 56, ), 
-                doc_md = '0', 
-                default_view = '0', 
-                params = None
-            )
-        else :
-            return DAGDetail(
-        )
-
     def testDAGDetail(self):
         """Test DAGDetail"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGDetail()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**dry_run** | **bool** | If set, don&#39;t actually run this operation. The response will contain a list of task instances planned to be affected, but won&#39;t be modified in any way.  | [optional] [default to True]
+**dry_run** | **bool** | If set, don&#39;t actually run this operation. The response will contain a list of task instances planned to be affected, but won&#39;t be modified in any way.  | [optional]  if omitted the server will use the default value of True
 **task_id** | **str** | The task ID. | [optional] 
 **execution_date** | **str** | The execution date. | [optional] 
 **include_upstream** | **bool** | If set to true, upstream tasks are also affected. | [optional] 

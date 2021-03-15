@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_detail_all_of import DAGDetailAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.time_delta import TimeDelta
+globals()['TimeDelta'] = TimeDelta
+from airflow_client.model.dag_detail_all_of import DAGDetailAllOf
+
 
 class TestDAGDetailAllOf(unittest.TestCase):
     """DAGDetailAllOf unit test stubs"""
@@ -29,36 +27,11 @@ class TestDAGDetailAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGDetailAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_detail_all_of.DAGDetailAllOf()  # noqa: E501
-        if include_optional :
-            return DAGDetailAllOf(
-                timezone = '0', 
-                catchup = True, 
-                orientation = '0', 
-                concurrency = 1.337, 
-                start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                dag_run_timeout = airflow.models.time_delta.TimeDelta(
-                    __type = '0', 
-                    days = 56, 
-                    seconds = 56, 
-                    microseconds = 56, ), 
-                doc_md = '0', 
-                default_view = '0', 
-                params = None
-            )
-        else :
-            return DAGDetailAllOf(
-        )
-
     def testDAGDetailAllOf(self):
         """Test DAGDetailAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGDetailAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

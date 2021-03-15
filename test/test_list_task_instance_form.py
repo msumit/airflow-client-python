@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.list_task_instance_form import ListTaskInstanceForm  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.list_task_instance_form import ListTaskInstanceForm
+
 
 class TestListTaskInstanceForm(unittest.TestCase):
     """ListTaskInstanceForm unit test stubs"""
@@ -29,43 +25,11 @@ class TestListTaskInstanceForm(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ListTaskInstanceForm
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.list_task_instance_form.ListTaskInstanceForm()  # noqa: E501
-        if include_optional :
-            return ListTaskInstanceForm(
-                dag_ids = [
-                    '0'
-                    ], 
-                execution_date_gte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                execution_date_lte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                start_date_gte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                start_date_lte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                end_date_gte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                end_date_lte = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                duration_gte = 1.337, 
-                duration_lte = 1.337, 
-                state = [
-                    '0'
-                    ], 
-                pool = [
-                    '0'
-                    ], 
-                queue = [
-                    '0'
-                    ]
-            )
-        else :
-            return ListTaskInstanceForm(
-        )
-
     def testListTaskInstanceForm(self):
         """Test ListTaskInstanceForm"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ListTaskInstanceForm()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

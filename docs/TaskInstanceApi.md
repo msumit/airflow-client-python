@@ -1,4 +1,4 @@
-# airflow-client.TaskInstanceApi
+# airflow_client.TaskInstanceApi
 
 All URIs are relative to *http://localhost/api/v1*
 
@@ -22,14 +22,15 @@ List extra links for task instance.
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import task_instance_api
+from airflow_client.model.extra_link_collection import ExtraLinkCollection
+from airflow_client.model.error import Error
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -39,102 +40,25 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
+    api_instance = task_instance_api.TaskInstanceApi(api_client)
+    dag_id = "dag_id_example" # str | The DAG ID.
+    dag_run_id = "dag_run_id_example" # str | The DAG run ID.
+    task_id = "task_id_example" # str | The task ID.
 
+    # example passing only required values which don't have defaults set
     try:
         # List extra links
         api_response = api_instance.get_extra_links(dag_id, dag_run_id, task_id)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_extra_links: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-
-    try:
-        # List extra links
-        api_response = api_instance.get_extra_links(dag_id, dag_run_id, task_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_extra_links: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-
-    try:
-        # List extra links
-        api_response = api_instance.get_extra_links(dag_id, dag_run_id, task_id)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_extra_links: %s\n" % e)
 ```
 
@@ -142,9 +66,9 @@ task_id = 'task_id_example' # str | The task ID.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dag_id** | **str**| The DAG ID. | 
- **dag_run_id** | **str**| The DAG run ID. | 
- **task_id** | **str**| The task ID. | 
+ **dag_id** | **str**| The DAG ID. |
+ **dag_run_id** | **str**| The DAG run ID. |
+ **task_id** | **str**| The task ID. |
 
 ### Return type
 
@@ -152,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -170,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_log**
-> InlineResponse200 get_log(dag_id, dag_run_id, task_id, task_try_number, full_content=full_content, token=token)
+> InlineResponse200 get_log(dag_id, dag_run_id, task_id, task_try_number)
 
 Get logs
 
@@ -180,14 +104,15 @@ Get logs for a specific task instance and its try number.
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import task_instance_api
+from airflow_client.model.inline_response200 import InlineResponse200
+from airflow_client.model.error import Error
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -197,111 +122,37 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-task_try_number = 56 # int | The task try number.
-full_content = True # bool | A full content will be returned. By default, only the first fragment will be returned.  (optional)
-token = 'token_example' # str | A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  (optional)
+    api_instance = task_instance_api.TaskInstanceApi(api_client)
+    dag_id = "dag_id_example" # str | The DAG ID.
+    dag_run_id = "dag_run_id_example" # str | The DAG run ID.
+    task_id = "task_id_example" # str | The task ID.
+    task_try_number = 1 # int | The task try number.
+    full_content = True # bool | A full content will be returned. By default, only the first fragment will be returned.  (optional)
+    token = "token_example" # str | A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  (optional)
 
+    # example passing only required values which don't have defaults set
     try:
         # Get logs
-        api_response = api_instance.get_log(dag_id, dag_run_id, task_id, task_try_number, full_content=full_content, token=token)
+        api_response = api_instance.get_log(dag_id, dag_run_id, task_id, task_try_number)
         pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_log: %s\n" % e)
-```
 
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-task_try_number = 56 # int | The task try number.
-full_content = True # bool | A full content will be returned. By default, only the first fragment will be returned.  (optional)
-token = 'token_example' # str | A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  (optional)
-
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Get logs
         api_response = api_instance.get_log(dag_id, dag_run_id, task_id, task_try_number, full_content=full_content, token=token)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_log: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-task_try_number = 56 # int | The task try number.
-full_content = True # bool | A full content will be returned. By default, only the first fragment will be returned.  (optional)
-token = 'token_example' # str | A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  (optional)
-
-    try:
-        # Get logs
-        api_response = api_instance.get_log(dag_id, dag_run_id, task_id, task_try_number, full_content=full_content, token=token)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_log: %s\n" % e)
 ```
 
@@ -309,12 +160,12 @@ token = 'token_example' # str | A token that allows you to continue fetching log
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dag_id** | **str**| The DAG ID. | 
- **dag_run_id** | **str**| The DAG run ID. | 
- **task_id** | **str**| The task ID. | 
- **task_try_number** | **int**| The task try number. | 
- **full_content** | **bool**| A full content will be returned. By default, only the first fragment will be returned.  | [optional] 
- **token** | **str**| A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  | [optional] 
+ **dag_id** | **str**| The DAG ID. |
+ **dag_run_id** | **str**| The DAG run ID. |
+ **task_id** | **str**| The task ID. |
+ **task_try_number** | **int**| The task try number. |
+ **full_content** | **bool**| A full content will be returned. By default, only the first fragment will be returned.  | [optional]
+ **token** | **str**| A token that allows you to continue fetching logs. If passed, it will specify the location from which the download should be continued.  | [optional]
 
 ### Return type
 
@@ -322,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -349,14 +200,15 @@ Get a task instance
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import task_instance_api
+from airflow_client.model.task_instance import TaskInstance
+from airflow_client.model.error import Error
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -366,102 +218,25 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
+    api_instance = task_instance_api.TaskInstanceApi(api_client)
+    dag_id = "dag_id_example" # str | The DAG ID.
+    dag_run_id = "dag_run_id_example" # str | The DAG run ID.
+    task_id = "task_id_example" # str | The task ID.
 
+    # example passing only required values which don't have defaults set
     try:
         # Get a task instance
         api_response = api_instance.get_task_instance(dag_id, dag_run_id, task_id)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_task_instance: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-
-    try:
-        # Get a task instance
-        api_response = api_instance.get_task_instance(dag_id, dag_run_id, task_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_task_instance: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-task_id = 'task_id_example' # str | The task ID.
-
-    try:
-        # Get a task instance
-        api_response = api_instance.get_task_instance(dag_id, dag_run_id, task_id)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_task_instance: %s\n" % e)
 ```
 
@@ -469,9 +244,9 @@ task_id = 'task_id_example' # str | The task ID.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dag_id** | **str**| The DAG ID. | 
- **dag_run_id** | **str**| The DAG run ID. | 
- **task_id** | **str**| The task ID. | 
+ **dag_id** | **str**| The DAG ID. |
+ **dag_run_id** | **str**| The DAG run ID. |
+ **task_id** | **str**| The task ID. |
 
 ### Return type
 
@@ -479,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -497,7 +272,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_task_instances**
-> TaskInstanceCollection get_task_instances(dag_id, dag_run_id, execution_date_gte=execution_date_gte, execution_date_lte=execution_date_lte, start_date_gte=start_date_gte, start_date_lte=start_date_lte, end_date_gte=end_date_gte, end_date_lte=end_date_lte, duration_gte=duration_gte, duration_lte=duration_lte, state=state, pool=pool, queue=queue, limit=limit, offset=offset)
+> TaskInstanceCollection get_task_instances(dag_id, dag_run_id)
 
 List task instances
 
@@ -507,14 +282,15 @@ This endpoint allows specifying `~` as the dag_id, dag_run_id to retrieve DAG ru
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import task_instance_api
+from airflow_client.model.error import Error
+from airflow_client.model.task_instance_collection import TaskInstanceCollection
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -524,138 +300,52 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-execution_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  (optional)
-execution_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  (optional)
-start_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-start_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-end_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-end_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-duration_gte = 3.4 # float | Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  (optional)
-duration_lte = 3.4 # float | Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  (optional)
-state = ['state_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-pool = ['pool_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-queue = ['queue_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
+    api_instance = task_instance_api.TaskInstanceApi(api_client)
+    dag_id = "dag_id_example" # str | The DAG ID.
+    dag_run_id = "dag_run_id_example" # str | The DAG run ID.
+    execution_date_gte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  (optional)
+    execution_date_lte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  (optional)
+    start_date_gte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
+    start_date_lte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
+    end_date_gte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
+    end_date_lte = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
+    duration_gte = 3.14 # float | Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  (optional)
+    duration_lte = 3.14 # float | Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  (optional)
+    state = [
+        "state_example",
+    ] # [str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
+    pool = [
+        "pool_example",
+    ] # [str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
+    queue = [
+        "queue_example",
+    ] # [str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
+    limit = 100 # int | The numbers of items to return. (optional) if omitted the server will use the default value of 100
+    offset = 0 # int | The number of items to skip before starting to collect the result set. (optional)
 
+    # example passing only required values which don't have defaults set
     try:
         # List task instances
-        api_response = api_instance.get_task_instances(dag_id, dag_run_id, execution_date_gte=execution_date_gte, execution_date_lte=execution_date_lte, start_date_gte=start_date_gte, start_date_lte=start_date_lte, end_date_gte=end_date_gte, end_date_lte=end_date_lte, duration_gte=duration_gte, duration_lte=duration_lte, state=state, pool=pool, queue=queue, limit=limit, offset=offset)
+        api_response = api_instance.get_task_instances(dag_id, dag_run_id)
         pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_task_instances: %s\n" % e)
-```
 
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-execution_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  (optional)
-execution_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  (optional)
-start_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-start_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-end_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-end_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-duration_gte = 3.4 # float | Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  (optional)
-duration_lte = 3.4 # float | Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  (optional)
-state = ['state_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-pool = ['pool_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-queue = ['queue_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
-
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # List task instances
         api_response = api_instance.get_task_instances(dag_id, dag_run_id, execution_date_gte=execution_date_gte, execution_date_lte=execution_date_lte, start_date_gte=start_date_gte, start_date_lte=start_date_lte, end_date_gte=end_date_gte, end_date_lte=end_date_lte, duration_gte=duration_gte, duration_lte=duration_lte, state=state, pool=pool, queue=queue, limit=limit, offset=offset)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_task_instances: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    dag_id = 'dag_id_example' # str | The DAG ID.
-dag_run_id = 'dag_run_id_example' # str | The DAG run ID.
-execution_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  (optional)
-execution_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  (optional)
-start_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-start_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-end_date_gte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  (optional)
-end_date_lte = '2013-10-20T19:20:30+01:00' # datetime | Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  (optional)
-duration_gte = 3.4 # float | Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  (optional)
-duration_lte = 3.4 # float | Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  (optional)
-state = ['state_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-pool = ['pool_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-queue = ['queue_example'] # list[str] | The value can be repeated to retrieve multiple matching values (OR condition). (optional)
-limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
-
-    try:
-        # List task instances
-        api_response = api_instance.get_task_instances(dag_id, dag_run_id, execution_date_gte=execution_date_gte, execution_date_lte=execution_date_lte, start_date_gte=start_date_gte, start_date_lte=start_date_lte, end_date_gte=end_date_gte, end_date_lte=end_date_lte, duration_gte=duration_gte, duration_lte=duration_lte, state=state, pool=pool, queue=queue, limit=limit, offset=offset)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_task_instances: %s\n" % e)
 ```
 
@@ -663,21 +353,21 @@ offset = 56 # int | The number of items to skip before starting to collect the r
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dag_id** | **str**| The DAG ID. | 
- **dag_run_id** | **str**| The DAG run ID. | 
- **execution_date_gte** | **datetime**| Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  | [optional] 
- **execution_date_lte** | **datetime**| Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  | [optional] 
- **start_date_gte** | **datetime**| Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  | [optional] 
- **start_date_lte** | **datetime**| Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  | [optional] 
- **end_date_gte** | **datetime**| Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  | [optional] 
- **end_date_lte** | **datetime**| Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  | [optional] 
- **duration_gte** | **float**| Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  | [optional] 
- **duration_lte** | **float**| Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  | [optional] 
- **state** | [**list[str]**](str.md)| The value can be repeated to retrieve multiple matching values (OR condition). | [optional] 
- **pool** | [**list[str]**](str.md)| The value can be repeated to retrieve multiple matching values (OR condition). | [optional] 
- **queue** | [**list[str]**](str.md)| The value can be repeated to retrieve multiple matching values (OR condition). | [optional] 
- **limit** | **int**| The numbers of items to return. | [optional] [default to 100]
- **offset** | **int**| The number of items to skip before starting to collect the result set. | [optional] 
+ **dag_id** | **str**| The DAG ID. |
+ **dag_run_id** | **str**| The DAG run ID. |
+ **execution_date_gte** | **datetime**| Returns objects greater or equal to the specified date.  This can be combined with execution_date_lte parameter to receive only the selected period.  | [optional]
+ **execution_date_lte** | **datetime**| Returns objects less than or equal to the specified date.  This can be combined with execution_date_gte parameter to receive only the selected period.  | [optional]
+ **start_date_gte** | **datetime**| Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  | [optional]
+ **start_date_lte** | **datetime**| Returns objects less or equal the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  | [optional]
+ **end_date_gte** | **datetime**| Returns objects greater or equal the specified date.  This can be combined with start_date_lte parameter to receive only the selected period.  | [optional]
+ **end_date_lte** | **datetime**| Returns objects less than or equal to the specified date.  This can be combined with start_date_gte parameter to receive only the selected period.  | [optional]
+ **duration_gte** | **float**| Returns objects greater than or equal to the specified values.  This can be combined with duration_lte parameter to receive only the selected period.  | [optional]
+ **duration_lte** | **float**| Returns objects less than or equal to the specified values.  This can be combined with duration_gte parameter to receive only the selected range.  | [optional]
+ **state** | **[str]**| The value can be repeated to retrieve multiple matching values (OR condition). | [optional]
+ **pool** | **[str]**| The value can be repeated to retrieve multiple matching values (OR condition). | [optional]
+ **queue** | **[str]**| The value can be repeated to retrieve multiple matching values (OR condition). | [optional]
+ **limit** | **int**| The numbers of items to return. | [optional] if omitted the server will use the default value of 100
+ **offset** | **int**| The number of items to skip before starting to collect the result set. | [optional]
 
 ### Return type
 
@@ -685,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -712,14 +402,16 @@ List task instances from all DAGs and DAG runs. This endpoint is a POST to allow
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import task_instance_api
+from airflow_client.model.list_task_instance_form import ListTaskInstanceForm
+from airflow_client.model.error import Error
+from airflow_client.model.task_instance_collection import TaskInstanceCollection
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -729,96 +421,40 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    list_task_instance_form = airflow-client.ListTaskInstanceForm() # ListTaskInstanceForm | 
+    api_instance = task_instance_api.TaskInstanceApi(api_client)
+    list_task_instance_form = ListTaskInstanceForm(
+        dag_ids=[
+            "dag_ids_example",
+        ],
+        execution_date_gte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        execution_date_lte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        start_date_gte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        start_date_lte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        end_date_gte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        end_date_lte=dateutil_parser('1970-01-01T00:00:00.00Z'),
+        duration_gte=3.14,
+        duration_lte=3.14,
+        state=[
+            "state_example",
+        ],
+        pool=[],
+        queue=[],
+    ) # ListTaskInstanceForm | 
 
+    # example passing only required values which don't have defaults set
     try:
         # List task instances (batch)
         api_response = api_instance.get_task_instances_batch(list_task_instance_form)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_task_instances_batch: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    list_task_instance_form = airflow-client.ListTaskInstanceForm() # ListTaskInstanceForm | 
-
-    try:
-        # List task instances (batch)
-        api_response = api_instance.get_task_instances_batch(list_task_instance_form)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling TaskInstanceApi->get_task_instances_batch: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.TaskInstanceApi(api_client)
-    list_task_instance_form = airflow-client.ListTaskInstanceForm() # ListTaskInstanceForm | 
-
-    try:
-        # List task instances (batch)
-        api_response = api_instance.get_task_instances_batch(list_task_instance_form)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling TaskInstanceApi->get_task_instances_batch: %s\n" % e)
 ```
 
@@ -826,7 +462,7 @@ with airflow-client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **list_task_instance_form** | [**ListTaskInstanceForm**](ListTaskInstanceForm.md)|  | 
+ **list_task_instance_form** | [**ListTaskInstanceForm**](ListTaskInstanceForm.md)|  |
 
 ### Return type
 
@@ -834,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 

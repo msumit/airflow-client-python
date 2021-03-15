@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.config import Config  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.config_section import ConfigSection
+globals()['ConfigSection'] = ConfigSection
+from airflow_client.model.config import Config
+
 
 class TestConfig(unittest.TestCase):
     """Config unit test stubs"""
@@ -29,32 +27,11 @@ class TestConfig(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Config
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.config.Config()  # noqa: E501
-        if include_optional :
-            return Config(
-                sections = [
-                    airflow.models.config_section.ConfigSection(
-                        name = '0', 
-                        options = [
-                            airflow.models.config_option.ConfigOption(
-                                key = '0', 
-                                value = '0', )
-                            ], )
-                    ]
-            )
-        else :
-            return Config(
-        )
-
     def testConfig(self):
         """Test Config"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Config()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

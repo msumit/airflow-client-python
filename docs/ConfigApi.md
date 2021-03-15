@@ -1,4 +1,4 @@
-# airflow-client.ConfigApi
+# airflow_client.ConfigApi
 
 All URIs are relative to *http://localhost/api/v1*
 
@@ -16,14 +16,15 @@ Get current configuration
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import config_api
+from airflow_client.model.config import Config
+from airflow_client.model.error import Error
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -33,93 +34,22 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.ConfigApi(api_client)
-    
+    api_instance = config_api.ConfigApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
     try:
         # Get current configuration
         api_response = api_instance.get_config()
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ConfigApi->get_config: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.ConfigApi(api_client)
-    
-    try:
-        # Get current configuration
-        api_response = api_instance.get_config()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling ConfigApi->get_config: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.ConfigApi(api_client)
-    
-    try:
-        # Get current configuration
-        api_response = api_instance.get_config()
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling ConfigApi->get_config: %s\n" % e)
 ```
 
@@ -132,7 +62,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.clear_task_instance import ClearTaskInstance  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.clear_task_instance import ClearTaskInstance
+
 
 class TestClearTaskInstance(unittest.TestCase):
     """ClearTaskInstance unit test stubs"""
@@ -29,31 +25,11 @@ class TestClearTaskInstance(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ClearTaskInstance
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.clear_task_instance.ClearTaskInstance()  # noqa: E501
-        if include_optional :
-            return ClearTaskInstance(
-                dry_run = True, 
-                start_date = '0', 
-                end_date = '0', 
-                only_failed = True, 
-                only_running = True, 
-                include_subdags = True, 
-                include_parentdag = True, 
-                reset_dag_runs = True
-            )
-        else :
-            return ClearTaskInstance(
-        )
-
     def testClearTaskInstance(self):
         """Test ClearTaskInstance"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ClearTaskInstance()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

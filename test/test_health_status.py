@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.health_status import HealthStatus  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.health_status import HealthStatus
+
 
 class TestHealthStatus(unittest.TestCase):
     """HealthStatus unit test stubs"""
@@ -29,23 +25,11 @@ class TestHealthStatus(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test HealthStatus
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.health_status.HealthStatus()  # noqa: E501
-        if include_optional :
-            return HealthStatus(
-            )
-        else :
-            return HealthStatus(
-        )
-
     def testHealthStatus(self):
         """Test HealthStatus"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = HealthStatus()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

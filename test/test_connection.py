@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,16 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.connection import Connection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.connection_all_of import ConnectionAllOf
+from airflow_client.model.connection_collection_item import ConnectionCollectionItem
+globals()['ConnectionAllOf'] = ConnectionAllOf
+globals()['ConnectionCollectionItem'] = ConnectionCollectionItem
+from airflow_client.model.connection import Connection
+
 
 class TestConnection(unittest.TestCase):
     """Connection unit test stubs"""
@@ -29,31 +29,11 @@ class TestConnection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test Connection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.connection.Connection()  # noqa: E501
-        if include_optional :
-            return Connection(
-                connection_id = '0', 
-                conn_type = '0', 
-                host = '0', 
-                login = '0', 
-                schema = '0', 
-                port = 56, 
-                password = '0', 
-                extra = '0'
-            )
-        else :
-            return Connection(
-        )
-
     def testConnection(self):
         """Test Connection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = Connection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

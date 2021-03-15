@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_run_collection import DAGRunCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.dag_run import DAGRun
+from airflow_client.model.dag_run_collection_all_of import DAGRunCollectionAllOf
+globals()['CollectionInfo'] = CollectionInfo
+globals()['DAGRun'] = DAGRun
+globals()['DAGRunCollectionAllOf'] = DAGRunCollectionAllOf
+from airflow_client.model.dag_run_collection import DAGRunCollection
+
 
 class TestDAGRunCollection(unittest.TestCase):
     """DAGRunCollection unit test stubs"""
@@ -29,35 +31,11 @@ class TestDAGRunCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGRunCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_run_collection.DAGRunCollection()  # noqa: E501
-        if include_optional :
-            return DAGRunCollection(
-                dag_runs = [
-                    airflow.models.dag_run.DAGRun(
-                        dag_run_id = '0', 
-                        dag_id = '0', 
-                        execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        state = 'success', 
-                        external_trigger = True, 
-                        conf = airflow.models.conf.conf(), )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return DAGRunCollection(
-        )
-
     def testDAGRunCollection(self):
         """Test DAGRunCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGRunCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

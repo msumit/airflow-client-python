@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.variable_collection_all_of import VariableCollectionAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.variable_collection_item import VariableCollectionItem
+globals()['VariableCollectionItem'] = VariableCollectionItem
+from airflow_client.model.variable_collection_all_of import VariableCollectionAllOf
+
 
 class TestVariableCollectionAllOf(unittest.TestCase):
     """VariableCollectionAllOf unit test stubs"""
@@ -29,27 +27,11 @@ class TestVariableCollectionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test VariableCollectionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.variable_collection_all_of.VariableCollectionAllOf()  # noqa: E501
-        if include_optional :
-            return VariableCollectionAllOf(
-                variables = [
-                    airflow.models.variable_collection_item.VariableCollectionItem(
-                        key = '0', )
-                    ]
-            )
-        else :
-            return VariableCollectionAllOf(
-        )
-
     def testVariableCollectionAllOf(self):
         """Test VariableCollectionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = VariableCollectionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

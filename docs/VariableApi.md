@@ -1,4 +1,4 @@
-# airflow-client.VariableApi
+# airflow_client.VariableApi
 
 All URIs are relative to *http://localhost/api/v1*
 
@@ -20,14 +20,14 @@ Delete a variable
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import variable_api
+from airflow_client.model.error import Error
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -37,93 +37,22 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
+    api_instance = variable_api.VariableApi(api_client)
+    variable_key = "variable_key_example" # str | The variable Key.
 
+    # example passing only required values which don't have defaults set
     try:
         # Delete a variable
         api_instance.delete_variable(variable_key)
-    except ApiException as e:
-        print("Exception when calling VariableApi->delete_variable: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-
-    try:
-        # Delete a variable
-        api_instance.delete_variable(variable_key)
-    except ApiException as e:
-        print("Exception when calling VariableApi->delete_variable: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-
-    try:
-        # Delete a variable
-        api_instance.delete_variable(variable_key)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->delete_variable: %s\n" % e)
 ```
 
@@ -131,7 +60,7 @@ with airflow-client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variable_key** | **str**| The variable Key. | 
+ **variable_key** | **str**| The variable Key. |
 
 ### Return type
 
@@ -139,7 +68,7 @@ void (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -168,14 +97,15 @@ Get a variable by key.
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import variable_api
+from airflow_client.model.error import Error
+from airflow_client.model.variable import Variable
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -185,96 +115,23 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
+    api_instance = variable_api.VariableApi(api_client)
+    variable_key = "variable_key_example" # str | The variable Key.
 
+    # example passing only required values which don't have defaults set
     try:
         # Get a variable
         api_response = api_instance.get_variable(variable_key)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->get_variable: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-
-    try:
-        # Get a variable
-        api_response = api_instance.get_variable(variable_key)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->get_variable: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-
-    try:
-        # Get a variable
-        api_response = api_instance.get_variable(variable_key)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->get_variable: %s\n" % e)
 ```
 
@@ -282,7 +139,7 @@ with airflow-client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variable_key** | **str**| The variable Key. | 
+ **variable_key** | **str**| The variable Key. |
 
 ### Return type
 
@@ -290,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -308,7 +165,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_variables**
-> VariableCollection get_variables(limit=limit, offset=offset)
+> VariableCollection get_variables()
 
 List variables
 
@@ -318,14 +175,15 @@ The collection does not contain data. To get data, you must get a single entity.
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import variable_api
+from airflow_client.model.error import Error
+from airflow_client.model.variable_collection import VariableCollection
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -335,99 +193,25 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
+    api_instance = variable_api.VariableApi(api_client)
+    limit = 100 # int | The numbers of items to return. (optional) if omitted the server will use the default value of 100
+    offset = 0 # int | The number of items to skip before starting to collect the result set. (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # List variables
         api_response = api_instance.get_variables(limit=limit, offset=offset)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->get_variables: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
-
-    try:
-        # List variables
-        api_response = api_instance.get_variables(limit=limit, offset=offset)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->get_variables: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    limit = 100 # int | The numbers of items to return. (optional) (default to 100)
-offset = 56 # int | The number of items to skip before starting to collect the result set. (optional)
-
-    try:
-        # List variables
-        api_response = api_instance.get_variables(limit=limit, offset=offset)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->get_variables: %s\n" % e)
 ```
 
@@ -435,8 +219,8 @@ offset = 56 # int | The number of items to skip before starting to collect the r
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| The numbers of items to return. | [optional] [default to 100]
- **offset** | **int**| The number of items to skip before starting to collect the result set. | [optional] 
+ **limit** | **int**| The numbers of items to return. | [optional] if omitted the server will use the default value of 100
+ **offset** | **int**| The number of items to skip before starting to collect the result set. | [optional]
 
 ### Return type
 
@@ -444,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -461,7 +245,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_variable**
-> Variable patch_variable(variable_key, variable, update_mask=update_mask)
+> Variable patch_variable(variable_key, variable)
 
 Update a variable
 
@@ -471,14 +255,15 @@ Update a variable by key.
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import variable_api
+from airflow_client.model.error import Error
+from airflow_client.model.variable import Variable
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -488,102 +273,36 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-variable = airflow-client.Variable() # Variable | 
-update_mask = ['update_mask_example'] # list[str] | The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  (optional)
+    api_instance = variable_api.VariableApi(api_client)
+    variable_key = "variable_key_example" # str | The variable Key.
+    variable = Variable() # Variable | 
+    update_mask = [
+        "update_mask_example",
+    ] # [str] | The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  (optional)
 
+    # example passing only required values which don't have defaults set
     try:
         # Update a variable
-        api_response = api_instance.patch_variable(variable_key, variable, update_mask=update_mask)
+        api_response = api_instance.patch_variable(variable_key, variable)
         pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->patch_variable: %s\n" % e)
-```
 
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-variable = airflow-client.Variable() # Variable | 
-update_mask = ['update_mask_example'] # list[str] | The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  (optional)
-
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Update a variable
         api_response = api_instance.patch_variable(variable_key, variable, update_mask=update_mask)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->patch_variable: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable_key = 'variable_key_example' # str | The variable Key.
-variable = airflow-client.Variable() # Variable | 
-update_mask = ['update_mask_example'] # list[str] | The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  (optional)
-
-    try:
-        # Update a variable
-        api_response = api_instance.patch_variable(variable_key, variable, update_mask=update_mask)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->patch_variable: %s\n" % e)
 ```
 
@@ -591,9 +310,9 @@ update_mask = ['update_mask_example'] # list[str] | The fields to update on the 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variable_key** | **str**| The variable Key. | 
- **variable** | [**Variable**](Variable.md)|  | 
- **update_mask** | [**list[str]**](str.md)| The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  | [optional] 
+ **variable_key** | **str**| The variable Key. |
+ **variable** | [**Variable**](Variable.md)|  |
+ **update_mask** | **[str]**| The fields to update on the resource. If absent or empty, all modifiable fields are updated. A comma-separated list of fully qualified names of fields.  | [optional]
 
 ### Return type
 
@@ -601,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 
@@ -628,14 +347,15 @@ Create a variable
 
 * Basic Authentication (Basic):
 ```python
-from __future__ import print_function
 import time
-import airflow-client
-from airflow-client.rest import ApiException
+import airflow_client
+from airflow_client.api import variable_api
+from airflow_client.model.error import Error
+from airflow_client.model.variable import Variable
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     host = "http://localhost/api/v1"
 )
 
@@ -645,96 +365,23 @@ configuration = airflow-client.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
+configuration = airflow_client.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
+with airflow_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable = airflow-client.Variable() # Variable | 
+    api_instance = variable_api.VariableApi(api_client)
+    variable = Variable() # Variable | 
 
+    # example passing only required values which don't have defaults set
     try:
         # Create a variable
         api_response = api_instance.post_variables(variable)
         pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->post_variables: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable = airflow-client.Variable() # Variable | 
-
-    try:
-        # Create a variable
-        api_response = api_instance.post_variables(variable)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VariableApi->post_variables: %s\n" % e)
-```
-
-```python
-from __future__ import print_function
-import time
-import airflow-client
-from airflow-client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = airflow-client.Configuration(
-    host = "http://localhost/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure HTTP basic authorization: Basic
-configuration = airflow-client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
-)
-
-# Enter a context with an instance of the API client
-with airflow-client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = airflow-client.VariableApi(api_client)
-    variable = airflow-client.Variable() # Variable | 
-
-    try:
-        # Create a variable
-        api_response = api_instance.post_variables(variable)
-        pprint(api_response)
-    except ApiException as e:
+    except airflow_client.ApiException as e:
         print("Exception when calling VariableApi->post_variables: %s\n" % e)
 ```
 
@@ -742,7 +389,7 @@ with airflow-client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **variable** | [**Variable**](Variable.md)|  | 
+ **variable** | [**Variable**](Variable.md)|  |
 
 ### Return type
 
@@ -750,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic), [GoogleOpenId](../README.md#GoogleOpenId), [Kerberos](../README.md#Kerberos)
+[Basic](../README.md#Basic), [Kerberos](../README.md#Kerberos)
 
 ### HTTP request headers
 

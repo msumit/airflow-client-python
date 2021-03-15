@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_collection import DAGCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.dag import DAG
+from airflow_client.model.dag_collection_all_of import DAGCollectionAllOf
+globals()['CollectionInfo'] = CollectionInfo
+globals()['DAG'] = DAG
+globals()['DAGCollectionAllOf'] = DAGCollectionAllOf
+from airflow_client.model.dag_collection import DAGCollection
+
 
 class TestDAGCollection(unittest.TestCase):
     """DAGCollection unit test stubs"""
@@ -29,42 +31,11 @@ class TestDAGCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_collection.DAGCollection()  # noqa: E501
-        if include_optional :
-            return DAGCollection(
-                dags = [
-                    airflow.models.dag.DAG(
-                        dag_id = '0', 
-                        root_dag_id = '0', 
-                        is_paused = True, 
-                        is_subdag = True, 
-                        fileloc = '0', 
-                        file_token = '0', 
-                        owners = [
-                            '0'
-                            ], 
-                        description = '0', 
-                        schedule_interval = null, 
-                        tags = [
-                            airflow.models.tag.Tag(
-                                name = '0', )
-                            ], )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return DAGCollection(
-        )
-
     def testDAGCollection(self):
         """Test DAGCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

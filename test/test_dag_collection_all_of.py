@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_collection_all_of import DAGCollectionAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.dag import DAG
+globals()['DAG'] = DAG
+from airflow_client.model.dag_collection_all_of import DAGCollectionAllOf
+
 
 class TestDAGCollectionAllOf(unittest.TestCase):
     """DAGCollectionAllOf unit test stubs"""
@@ -29,41 +27,11 @@ class TestDAGCollectionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGCollectionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_collection_all_of.DAGCollectionAllOf()  # noqa: E501
-        if include_optional :
-            return DAGCollectionAllOf(
-                dags = [
-                    airflow.models.dag.DAG(
-                        dag_id = '0', 
-                        root_dag_id = '0', 
-                        is_paused = True, 
-                        is_subdag = True, 
-                        fileloc = '0', 
-                        file_token = '0', 
-                        owners = [
-                            '0'
-                            ], 
-                        description = '0', 
-                        schedule_interval = null, 
-                        tags = [
-                            airflow.models.tag.Tag(
-                                name = '0', )
-                            ], )
-                    ]
-            )
-        else :
-            return DAGCollectionAllOf(
-        )
-
     def testDAGCollectionAllOf(self):
         """Test DAGCollectionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGCollectionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,20 +9,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
-import airflow
-from airflow.api.pool_api import PoolApi  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.api.pool_api import PoolApi  # noqa: E501
 
 
 class TestPoolApi(unittest.TestCase):
     """PoolApi unit test stubs"""
 
     def setUp(self):
-        self.api = airflow.api.pool_api.PoolApi()  # noqa: E501
+        self.api = PoolApi()  # noqa: E501
 
     def tearDown(self):
         pass

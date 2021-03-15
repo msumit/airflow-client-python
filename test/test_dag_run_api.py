@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,20 +9,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
-import airflow
-from airflow.api.dag_run_api import DAGRunApi  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.api.dag_run_api import DAGRunApi  # noqa: E501
 
 
 class TestDAGRunApi(unittest.TestCase):
     """DAGRunApi unit test stubs"""
 
     def setUp(self):
-        self.api = airflow.api.dag_run_api.DAGRunApi()  # noqa: E501
+        self.api = DAGRunApi()  # noqa: E501
 
     def tearDown(self):
         pass

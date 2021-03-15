@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,14 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.dag_run_collection_all_of import DAGRunCollectionAllOf  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.dag_run import DAGRun
+globals()['DAGRun'] = DAGRun
+from airflow_client.model.dag_run_collection_all_of import DAGRunCollectionAllOf
+
 
 class TestDAGRunCollectionAllOf(unittest.TestCase):
     """DAGRunCollectionAllOf unit test stubs"""
@@ -29,34 +27,11 @@ class TestDAGRunCollectionAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test DAGRunCollectionAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.dag_run_collection_all_of.DAGRunCollectionAllOf()  # noqa: E501
-        if include_optional :
-            return DAGRunCollectionAllOf(
-                dag_runs = [
-                    airflow.models.dag_run.DAGRun(
-                        dag_run_id = '0', 
-                        dag_id = '0', 
-                        execution_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        start_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        end_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        state = 'success', 
-                        external_trigger = True, 
-                        conf = airflow.models.conf.conf(), )
-                    ]
-            )
-        else :
-            return DAGRunCollectionAllOf(
-        )
-
     def testDAGRunCollectionAllOf(self):
         """Test DAGRunCollectionAllOf"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = DAGRunCollectionAllOf()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

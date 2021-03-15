@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.connection_collection import ConnectionCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.connection_collection_all_of import ConnectionCollectionAllOf
+from airflow_client.model.connection_collection_item import ConnectionCollectionItem
+globals()['CollectionInfo'] = CollectionInfo
+globals()['ConnectionCollectionAllOf'] = ConnectionCollectionAllOf
+globals()['ConnectionCollectionItem'] = ConnectionCollectionItem
+from airflow_client.model.connection_collection import ConnectionCollection
+
 
 class TestConnectionCollection(unittest.TestCase):
     """ConnectionCollection unit test stubs"""
@@ -29,33 +31,11 @@ class TestConnectionCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ConnectionCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.connection_collection.ConnectionCollection()  # noqa: E501
-        if include_optional :
-            return ConnectionCollection(
-                connections = [
-                    airflow.models.connection_collection_item.ConnectionCollectionItem(
-                        connection_id = '0', 
-                        conn_type = '0', 
-                        host = '0', 
-                        login = '0', 
-                        schema = '0', 
-                        port = 56, )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return ConnectionCollection(
-        )
-
     def testConnectionCollection(self):
         """Test ConnectionCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ConnectionCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

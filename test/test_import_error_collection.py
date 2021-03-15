@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.import_error_collection import ImportErrorCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.import_error import ImportError
+from airflow_client.model.import_error_collection_all_of import ImportErrorCollectionAllOf
+globals()['CollectionInfo'] = CollectionInfo
+globals()['ImportError'] = ImportError
+globals()['ImportErrorCollectionAllOf'] = ImportErrorCollectionAllOf
+from airflow_client.model.import_error_collection import ImportErrorCollection
+
 
 class TestImportErrorCollection(unittest.TestCase):
     """ImportErrorCollection unit test stubs"""
@@ -29,31 +31,11 @@ class TestImportErrorCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ImportErrorCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.import_error_collection.ImportErrorCollection()  # noqa: E501
-        if include_optional :
-            return ImportErrorCollection(
-                import_errors = [
-                    airflow.models.import_error.ImportError(
-                        import_error_id = 56, 
-                        timestamp = '0', 
-                        filename = '0', 
-                        stack_trace = '0', )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return ImportErrorCollection(
-        )
-
     def testImportErrorCollection(self):
         """Test ImportErrorCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ImportErrorCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

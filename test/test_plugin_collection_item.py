@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.plugin_collection_item import PluginCollectionItem  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.plugin_collection_item import PluginCollectionItem
+
 
 class TestPluginCollectionItem(unittest.TestCase):
     """PluginCollectionItem unit test stubs"""
@@ -29,50 +25,11 @@ class TestPluginCollectionItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test PluginCollectionItem
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.plugin_collection_item.PluginCollectionItem()  # noqa: E501
-        if include_optional :
-            return PluginCollectionItem(
-                number = '0', 
-                name = '0', 
-                hooks = [
-                    '0'
-                    ], 
-                executors = [
-                    '0'
-                    ], 
-                macros = [
-                    None
-                    ], 
-                flask_blueprints = [
-                    None
-                    ], 
-                appbuilder_views = [
-                    None
-                    ], 
-                appbuilder_menu_items = [
-                    None
-                    ], 
-                global_operator_extra_links = [
-                    None
-                    ], 
-                operator_extra_links = [
-                    None
-                    ], 
-                source = '0'
-            )
-        else :
-            return PluginCollectionItem(
-        )
-
     def testPluginCollectionItem(self):
         """Test PluginCollectionItem"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = PluginCollectionItem()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

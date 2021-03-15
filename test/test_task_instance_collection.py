@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,18 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.task_instance_collection import TaskInstanceCollection  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.collection_info import CollectionInfo
+from airflow_client.model.task_instance import TaskInstance
+from airflow_client.model.task_instance_collection_all_of import TaskInstanceCollectionAllOf
+globals()['CollectionInfo'] = CollectionInfo
+globals()['TaskInstance'] = TaskInstance
+globals()['TaskInstanceCollectionAllOf'] = TaskInstanceCollectionAllOf
+from airflow_client.model.task_instance_collection import TaskInstanceCollection
+
 
 class TestTaskInstanceCollection(unittest.TestCase):
     """TaskInstanceCollection unit test stubs"""
@@ -29,54 +31,11 @@ class TestTaskInstanceCollection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test TaskInstanceCollection
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.task_instance_collection.TaskInstanceCollection()  # noqa: E501
-        if include_optional :
-            return TaskInstanceCollection(
-                task_instances = [
-                    airflow.models.task_instance.TaskInstance(
-                        task_id = '0', 
-                        dag_id = '0', 
-                        execution_date = '0', 
-                        start_date = '0', 
-                        end_date = '0', 
-                        duration = 1.337, 
-                        state = 'success', 
-                        try_number = 56, 
-                        max_tries = 56, 
-                        hostname = '0', 
-                        unixname = '0', 
-                        pool = '0', 
-                        pool_slots = 56, 
-                        queue = '0', 
-                        priority_weight = 56, 
-                        operator = '0', 
-                        queued_when = '0', 
-                        pid = 56, 
-                        executor_config = '0', 
-                        sla_miss = airflow.models.sla_miss.SLAMiss(
-                            task_id = '0', 
-                            dag_id = '0', 
-                            execution_date = '0', 
-                            email_sent = True, 
-                            timestamp = '0', 
-                            description = '0', 
-                            notification_sent = True, ), )
-                    ], 
-                total_entries = 56
-            )
-        else :
-            return TaskInstanceCollection(
-        )
-
     def testTaskInstanceCollection(self):
         """Test TaskInstanceCollection"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = TaskInstanceCollection()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':

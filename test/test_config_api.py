@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,20 +9,17 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 
-import airflow
-from airflow.api.config_api import ConfigApi  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.api.config_api import ConfigApi  # noqa: E501
 
 
 class TestConfigApi(unittest.TestCase):
     """ConfigApi unit test stubs"""
 
     def setUp(self):
-        self.api = airflow.api.config_api.ConfigApi()  # noqa: E501
+        self.api = ConfigApi()  # noqa: E501
 
     def tearDown(self):
         pass

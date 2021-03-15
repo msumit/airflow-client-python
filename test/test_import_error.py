@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     Airflow API (Stable)
 
@@ -11,14 +9,12 @@
 """
 
 
-from __future__ import absolute_import
-
+import sys
 import unittest
-import datetime
 
-import airflow
-from airflow.models.import_error import ImportError  # noqa: E501
-from airflow.rest import ApiException
+import airflow_client
+from airflow_client.model.import_error import ImportError
+
 
 class TestImportError(unittest.TestCase):
     """ImportError unit test stubs"""
@@ -29,27 +25,11 @@ class TestImportError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ImportError
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # model = airflow.models.import_error.ImportError()  # noqa: E501
-        if include_optional :
-            return ImportError(
-                import_error_id = 56, 
-                timestamp = '0', 
-                filename = '0', 
-                stack_trace = '0'
-            )
-        else :
-            return ImportError(
-        )
-
     def testImportError(self):
         """Test ImportError"""
-        inst_req_only = self.make_instance(include_optional=False)
-        inst_req_and_optional = self.make_instance(include_optional=True)
+        # FIXME: construct object with mandatory attributes with example values
+        # model = ImportError()  # noqa: E501
+        pass
 
 
 if __name__ == '__main__':
